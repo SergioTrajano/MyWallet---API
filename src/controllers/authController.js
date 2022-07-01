@@ -21,7 +21,7 @@ export async function signIn(req, res) {
     }
 }
 
-export async function singUp(res, req) {
+export async function singUp(req, res) {
     const user = req.body;
 
     const saltNumber = 15;

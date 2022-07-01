@@ -7,7 +7,7 @@ import { singUp } from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.get('/signIn', validateSignIn, signIn);
-router.post('/signUp', validateSignUn, singUp);
+router.get('/users', validateSignIn, signIn);
+router.post('/users', validateSignUn, singUp);
 
 export default router;
