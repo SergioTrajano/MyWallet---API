@@ -1,5 +1,5 @@
 import db from '../db.js';
-import { compareSync } from 'bcrypt';
+import { compareSync, hashSync } from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 
 export async function signIn(req, res) {
@@ -18,5 +18,21 @@ export async function signIn(req, res) {
         res.status(200).send({token: token});
     } else {
         res.sendStatus(404);
+    }
+}
+
+export async function singUp(res, req) {
+    const user = req.body;
+
+    const saltNumber = 15;
+    const hashPassword = hashSync(user.password, saltNumber);
+
+    try {
+        await db.collection('users').insertOne({...user, password: hashPassword});
+
+        res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
     }
 }
