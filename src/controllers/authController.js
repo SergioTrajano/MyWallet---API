@@ -1,8 +1,8 @@
-import db from '../db';
+import db from '../db.js';
 import { compareSync } from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 
-async function signIn(req, res) {
+export async function signIn(req, res) {
     const user = req.body;
 
     const userInCollection = await db.collection('users').findOne({email: user.email});

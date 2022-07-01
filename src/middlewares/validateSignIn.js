@@ -1,6 +1,6 @@
-import signInSchema from '../schemas/signInSchema';
+import signInSchema from '../schemas/signInSchema.js';
 
-async function validateSignIn(req, res, next) {
+export async function validateSignIn(req, res, next) {
     const user = req.body;
 
     const { error } = signInSchema.validate(user);
