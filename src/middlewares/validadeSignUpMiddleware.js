@@ -1,9 +1,11 @@
-import joi from 'joi';
+import signUpSchema from '../schemas/signUpSchema.js';
 
-const signUpSchema = joi.object({
-    name: joi.string().required(),
-    email: joi.string().email().required(),
-    password: joi.string().required(),
-});
+export async function validateSignUn (res, req, next) {
+    const user = req.body;
 
-export default signUpSchema;
+    const { error } = signUpSchema.validate(user);
+
+    if (error) res.sendStatus(422);
+    
+    next();
+}
