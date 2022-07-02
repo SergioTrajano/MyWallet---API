@@ -33,10 +33,10 @@ export async function singUp(req, res) {
     try {
         await db.collection('users').insertOne({...user, password: hashPassword});
 
-        const userId = await db.collection('users').findOne({email: user.email})._id;
+        const userId = await db.collection('users').findOne({email: user.email});
 
         const inicialUserTransactionHIstory = {
-            id: userId,
+            id: userId._id,
             transactions: [],
         }
 
