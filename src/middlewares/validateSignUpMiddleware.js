@@ -5,7 +5,10 @@ export async function validateSignUn (res, req, next) {
 
     const { error } = signUpSchema.validate(user);
 
-    if (error) res.sendStatus(422);
+    if (error) {
+        res.sendStatus(422);
+        return;
+    }
     
     next();
 }

@@ -5,6 +5,11 @@ export async function getTransactionHistory(req, res) {
     const sessionId = res.locals.session.userId;
     const userTransaction = await db.collection('transactionHistory').findOne({ id: new ObjectId(sessionId)});
 
+    if (!userTransaction) {
+        res.sendStatus(404);
+        return;
+    }
+
     res.send(userTransaction.transactions);
 }
 
