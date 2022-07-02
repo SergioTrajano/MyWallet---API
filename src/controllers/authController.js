@@ -10,7 +10,7 @@ export async function signIn(req, res) {
     if (userInCollection && compareSync(user.password, userInCollection.password)) {
         const token = uuid();
         await db.collection('sessions').insertOne({
-            userId: user._id,
+            userId: userInCollection._id,
             token
         });
 
@@ -32,6 +32,15 @@ export async function singUp(req, res) {
 
     try {
         await db.collection('users').insertOne({...user, password: hashPassword});
+
+        const userId = await db.collection('users').findOne({email: user.email})._id;
+
+        const inicialUserTransactionHIstory = {
+            id: userId,
+            transactions: [],
+        }
+
+        await db.collection('transactionHistory').insertOne(inicialUserTransactionHIstory);
 
         res.sendStatus(200);
     } catch (error) {

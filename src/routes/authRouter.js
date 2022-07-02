@@ -1,7 +1,7 @@
 import express from 'express'
 
 import { validateSignIn } from '../middlewares/validateSignInMiddleware.js';
-import { validateSignUn } from '../middlewares/validadeSignUpMiddleware.js';
+import { validateSignUn } from '../middlewares/validateSignUpMiddleware.js';
 import { signIn } from '../controllers/authController.js'; 
 import { singUp } from '../controllers/authController.js';
 
