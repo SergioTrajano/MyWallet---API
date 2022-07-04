@@ -3,6 +3,7 @@ import db from '../db.js';
 
 export async function validateSignUp (req, res, next) {
     const user = req.body;
+    console.log(user);
 
     const { error } = signUpSchema.validate(user);
 
