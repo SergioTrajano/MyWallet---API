@@ -10,7 +10,7 @@ export async function getTransactionHistory(req, res) {
         return;
     }
 
-    res.send(userTransaction.transactions);
+    res.send(userTransaction.transactions.reverse());
 }
 
 export async function postOnTransactionHistory(req, res) {
