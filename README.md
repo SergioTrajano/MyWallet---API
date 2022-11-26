@@ -52,7 +52,8 @@ GET /users
     }
     - response: retorna statusCode 422 caso houver algum erro no corpo da requesição;
                 retorna statusCode 404 caso as credenciais sejam inválidas;
-                retorna statusCode 200 e um corpo no formato {name: "nome-do-usuario, token: "token-do-usuario"}
+                retorna statusCode 200 e um corpo no formato 
+                { name: "nome-do-usuario, token: "token-do-usuario" }
 ```
     
 ```yml 
