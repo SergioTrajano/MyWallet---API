@@ -57,46 +57,49 @@ GET /users
 ```
     
 ```yml 
-GET /usuarios (autenticada)
+GET /transaction (autenticada)
     - Rota para listar todos os usuários
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
+    - response: retorna statusCode 422 caso o header seja invalido;
+                retorna statusCode 404 caso o token não seja um encontrado ou caso o usuario não possua transações cadastradas;
+                retorna statusCode 200 e as transações do usuario no formato 
+                [
+                  { 
+                     value: 30,
+                     description: "Lorem ipsulom",
+                     isPositive: true,
+                     date: "MM/DD/YYYY",
+                  }, ...
+                ]
+                
 ```
 
-```yml
-GET /usuarios/:id (autenticada)
-    - Rota para listar um usuário pelo id
+```yml 
+POST /transaction (autenticada)
+    - Rota para listar todos os usuários
     - headers: { "Authorization": "Bearer $token" }
-    - body: {}
-``` 
-
-```yml
-PUT /usuarios/:id (autenticada)
-    - Rota para atualizar um usuário pelo id
-    - headers: { "Authorization": "Bearer $token" }
-    - body: {
-        "nome": "Lorem ipsum2",
-        "email": "lorem2@gmail.com",
-        "senha": "loremipsum2"
+    - body: { 
+               value: 30,
+               description: "Lorem ipsulom",
+               isPositive: true,
+               date: "MM/DD/YYYY",
     }
+    - response: retorna statusCode 422 caso o header ou o body invalidos;
+                retorna statusCode 404 caso o token não seja encontrado no banco de dados;
+                retorna statusCode 201 caso a transação seja cadastrada.
 ```
- 
-```yml
-DELETE /usuarios/:id (autenticada)
-    - Rota para deletar um usuário pelo id
-    - headers: { "Authorization": "Bearer $token" }
-    - body: {}
-```
+
 ***
 
 ## 🏁 Rodando a aplicação
 
-Este projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app), então certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
+Certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
 
 Primeiro, faça o clone desse repositório na sua maquina:
 
 ```
-git clone https://github.com/luanalessa/projeto-backend.git
+git clone [https://github.com/luanalessa/projeto-backend.git](https://github.com/SergioTrajano/MyWallet---API)
 ```
 
 Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
@@ -110,4 +113,4 @@ Finalizado o processo, é só inicializar o servidor
 npm start
 ```
 
-:stop_sign: Não esqueça de repetir os passos acima com o [repositório](https://github.com/luanalessa/projeto-frontend.git) que contem a interface da aplicação, para testar o projeto por completo.
+:stop_sign: Não esqueça de repetir os passos acima com o [repositório](https://github.com/SergioTrajano/MyWallet-) que contem a interface da aplicação, para testar o projeto por completo.
