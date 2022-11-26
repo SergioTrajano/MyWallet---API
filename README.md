@@ -108,6 +108,12 @@ Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
 npm install
 ```
 
+É necessário fazer a instalação do MongoDB. COm o MongoDb instalado, rode o seguinte comando em um terminal (não feche esse terminal enquanto a aplicação estiver rodando)
+
+```
+mongod --dbpath ~/.mongo
+```
+
 Finalizado o processo, é só inicializar o servidor
 ```
 npm start
