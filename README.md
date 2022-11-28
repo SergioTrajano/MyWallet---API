@@ -58,7 +58,7 @@ GET /users
     
 ```yml 
 GET /transaction (autenticada)
-    - Rota para listar todos os usuários
+    - Rota para listar todos as transações;
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
     - response: retorna statusCode 422 caso o header seja invalido;
@@ -77,7 +77,7 @@ GET /transaction (autenticada)
 
 ```yml 
 POST /transaction (autenticada)
-    - Rota para listar todos os usuários
+    - Rota adicionar novas transações;
     - headers: { "Authorization": "Bearer $token" }
     - body: { 
                value: 30,
