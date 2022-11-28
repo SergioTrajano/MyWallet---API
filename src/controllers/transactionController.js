@@ -1,9 +1,9 @@
-import db from '../db.js';
-import { ObjectId } from 'mongodb';
+import db from "../db.js";
+import { ObjectId } from "mongodb";
 
 export async function getTransactionHistory(req, res) {
     const sessionId = res.locals.session.userId;
-    const userTransaction = await db.collection('transactionHistory').findOne({ id: new ObjectId(sessionId)});
+    const userTransaction = await db.collection("transactionHistory").findOne({ id: new ObjectId(sessionId) });
 
     if (!userTransaction) {
         res.sendStatus(404);
@@ -18,12 +18,11 @@ export async function postOnTransactionHistory(req, res) {
     const newTransaction = req.body;
 
     try {
-        await db.collection('transactionHistory').updateOne(
-            { id: new ObjectId(sessionId) },
-            { $push: { transactions: newTransaction} }
-        );
+        await db
+            .collection("transactionHistory")
+            .updateOne({ id: new ObjectId(sessionId) }, { $push: { transactions: newTransaction } });
 
-        res.sendStatus(200);
+        res.sendStatus(201);
     } catch (error) {
         console.log(error);
         res.sendStatus(500);

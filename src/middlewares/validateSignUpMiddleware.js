@@ -1,9 +1,8 @@
-import signUpSchema from '../schemas/signUpSchema.js';
-import db from '../db.js';
+import signUpSchema from "../schemas/signUpSchema.js";
+import db from "../db.js";
 
-export async function validateSignUp (req, res, next) {
+export async function validateSignUp(req, res, next) {
     const user = req.body;
-    console.log(user);
 
     const { error } = signUpSchema.validate(user);
 
@@ -12,12 +11,12 @@ export async function validateSignUp (req, res, next) {
         return;
     }
 
-    const emailInUser = await db.collection('users').findOne({email: user.email});
+    const emailInUser = await db.collection("users").findOne({ email: user.email });
 
     if (emailInUser) {
         res.sendStatus(403);
         return;
     }
-    
+
     next();
 }
